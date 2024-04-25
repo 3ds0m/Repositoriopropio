@@ -1,0 +1,2 @@
+# Repositoriopropio
+Programacioncosasmias
