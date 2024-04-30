@@ -5,21 +5,24 @@ public class Tienda {
 
     //Método CrearCliente: Este método permite al usuario ingresar los datos de un nuevo cliente, como nombre, dirección, número de teléfono y correo electrónico. Luego crea una instancia de la clase Cliente con estos datos y la agrega tanto a la lista de clientes como al mapa de clientes, asignándole un ID único en el proceso.
     public static void CrearCliente(ArrayList<Cliente> listaClientes, HashMap<Integer, Cliente> mapaClientes, Scanner sc) {
+        Cliente cliente = new Cliente();
         System.out.println("Ingrese el nombre del cliente:");
-        String nombre = sc.nextLine();
-        sc.nextLine();
+        cliente.setNombre(sc.nextLine());
+        cliente.setNombre(sc.nextLine());
         System.out.println("Ingrese la dirección del cliente:");
         String direccion = sc.nextLine();
+        cliente.setDireccion(direccion);
         System.out.println("Ingrese el número de teléfono del cliente:");
         int numTelefono = sc.nextInt();
+        cliente.setNumTelefono(numTelefono);
         System.out.println("Ingrese el email del cliente:");
-        sc.nextLine();
-        String email = sc.nextLine();
-
+        cliente.setEmail(sc.nextLine());
+        cliente.setEmail(sc.nextLine());
         LocalDate fechaRegistro = LocalDate.now();
-        Cliente nuevoCliente = new Cliente(nombre, direccion, email, fechaRegistro, numTelefono);
-        GuardarCliente(nuevoCliente, listaClientes, mapaClientes);
-        System.out.println("Cliente agregado exitosamente.\n" + "Con el ID: " + nuevoCliente.getIdCliente());
+        cliente.setFechaRegistro(fechaRegistro);
+
+        GuardarCliente(cliente, listaClientes, mapaClientes);
+        System.out.println("Cliente agregado exitosamente.\n" + "Con el ID: " + cliente.getIdCliente());
     }
 
     //Método GuardarCliente: Este método recibe un cliente como argumento y lo agrega tanto a la lista de clientes como al mapa de clientes. Además, asigna un ID único al cliente antes de agregarlo al mapa.
@@ -161,6 +164,7 @@ public class Tienda {
     //Método GuardarVenta: Este método permite al usuario registrar una nueva venta asociada a un cliente existente. Se solicita al usuario que ingrese el ID del cliente y el precio de la venta. Luego se crea una instancia de la clase Venta, se asigna un ID único y se guarda en la lista de ventas. Además, se actualiza el tipo de cliente (regular o mayorista) y se aplican bonificaciones y descuentos según corresponda.
     public static void GuardarVenta(Scanner sc, ArrayList<Venta> listaVentas, HashMap<Integer, Cliente> mapaClientes, HashMap<Venta, Integer> mapaVentas) {
         Venta venta = new Venta();
+        Libros libro=new Libros();
         System.out.println("Ingrese el ID del cliente a buscar: ");
         int idCliente = sc.nextInt();
         sc.nextLine();
@@ -185,14 +189,17 @@ public class Tienda {
             LocalDate FechaRegistro= LocalDate.now();
             venta.setFechaRegistro(FechaRegistro);
 
-            System.out.println("""
+            if(cliente.getTipoCliente()==0){
+                System.out.println("""
                     Indique el tipo de Cliente:\s
                     1)Regular
                     2)Mayorista
                     3)Online
                     4)Internacional
                     5)VIP""");
-            cliente.setTipoCliente(sc.nextInt());
+                cliente.setTipoCliente(sc.nextInt());
+            }
+
             Cliente.GuardarPuntosFidelidad(cliente,precioVenta);//Guarda puntos en funcion del precio total de la venta sin descuento
             Descuento(cliente,venta);
             System.out.println("El precio de la compra despues de descuentos pasa de "+precioVenta+" a "+venta.getPrecio());

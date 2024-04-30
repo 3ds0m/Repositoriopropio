@@ -23,7 +23,7 @@ public class Cliente {
         TipoCliente = tipoCliente;
     }
 
-    int TipoCliente;
+    int TipoCliente=0;
 
     public int getPuntosFidelidad() {
         return puntosFidelidad;
@@ -42,8 +42,7 @@ public class Cliente {
         this.fechaRegistro = fechaRegistro;
         this.numTelefono = numTelefono;
     }
-
-
+    public Cliente(){}
     //Getters y setters.
     public String getNombre() {
         return nombre;
@@ -68,6 +67,8 @@ public class Cliente {
     public LocalDate getFechaRegistro() {
         return fechaRegistro;
     } //Tipo fecha.
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {this.fechaRegistro = fechaRegistro;}
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -132,6 +133,7 @@ public class Cliente {
             System.out.println("Nombre: " + cliente.getNombre() + " con el ID: " + cliente.getIdCliente());
             System.out.println("Direccion: " + cliente.getDireccion());
             System.out.println("Telefono: " + cliente.getNumTelefono());
+            System.out.println("Email: " + cliente.getEmail());
             System.out.println("Fecha de registro: " + cliente.getFechaRegistro());
             System.out.println("Puntos de fidelidad: " + cliente.getPuntosFidelidad());
             sc.nextLine();

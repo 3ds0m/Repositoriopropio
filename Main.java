@@ -10,7 +10,11 @@ public class Main {
         final HashMap<Integer, Cliente> mapaClientes = new HashMap<>();
         final ArrayList<Venta> listaVentas = new ArrayList<>();
         final HashMap<Venta, Integer> mapaVentas = new HashMap<>();
-
+        Libros[] libros = new Libros[3];
+        // Inicializar cada elemento del array con un nuevo objeto Libros
+        libros[0] = new Libros(100, "libro2", "autor1", 1);
+        libros[1] = new Libros(200, "libro1", "autor2", 2);
+        libros[2] = new Libros(300, "libro3", "autor3", 3);
         boolean salir = false;
 
         while (!salir) {
